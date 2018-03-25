@@ -1,16 +1,39 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import AppRouter from './routers/AppRouter';
+import configureStore from './store/configureStore';
+import 'normalize.css/normalize.css';
+import '../sass/app.scss';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {addToCart} from "./actions/shoppingCart";
+import {imageWatch} from "./components/image";
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
- */
 
-require('./bootstrap');
+const store = configureStore();
+console.log(store.getState());
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+const App = () => (
+    <MuiThemeProvider>
+        <AppRouter />
+    </MuiThemeProvider>
+);
 
-require('./components/Example');
+const jsx = (
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
+
+const product = {
+    productName: "Product Name",
+    productImage: imageWatch,
+    sellerName: "Seller Name",
+    quantity: 1,
+    price: 19.99,
+    productID: 1
+};
+store.dispatch(addToCart(product));
+
+const appRoot = document.getElementById('app');
+ReactDOM.render(jsx, appRoot);

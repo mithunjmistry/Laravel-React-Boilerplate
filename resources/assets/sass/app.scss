@@ -1,14 +1,15 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
-@import "variables";
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+@import './base/settings';
+@import './base/base';
+@import './components/button';
+@import './components/footer';
+@import './components/subcategoryList';
+@import './components/common';
+@import './components/subcategory';
+@import './components/searchResultComponent';
+@import './components/customListItem';
+@import './components/advancedfilter';
+@import './components/productinfo';
+@import './components/customListItemCart';
+@import './components/cart';
+@import './components/header';
+@import './components/checkout';

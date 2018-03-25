@@ -11,5 +11,25 @@ let mix = require('laravel-mix');
  |
  */
 
+let preprocessorsExcludes = [];
+if (mix.preprocessors) {
+    mix.preprocessors.forEach(preprocessor => {
+        preprocessorsExcludes.push(preprocessor.test());
+    });
+}
+
+let rules = [
+    {
+        test: /\.s[ac]ss$/,
+        exclude: preprocessorsExcludes,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+    }
+];
+
+
 mix.react('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .webpackConfig({
+        module: {
+            rules: rules
+        }
+    });
